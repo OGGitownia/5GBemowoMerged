@@ -1,0 +1,14 @@
+Copyright (c) 2025 OGGitownia
+
+All rights reserved.
+
+This code is published for review purposes only. No part of this repository may be used, copied, modified, distributed, or incorporated into other works — either commercially or non-commercially — without **prior written permission** from the owner of the GitHub organization "OGGitownia".
+
+Use is only allowed upon receiving an explicit license agreement that may permit:
+- Commercial use,
+- Non-commercial use,
+- Or both.
+
+Unauthorized use is strictly prohibited and may result in legal action.
+
+Contact: chat3gpp@gmail.com

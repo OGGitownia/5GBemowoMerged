@@ -1,0 +1,15 @@
+.creating-norm {
+    padding: 60px;
+    text-align: center;
+}
+
+.creating-norm h1 {
+    font-size: 28px;
+    color: #495057;
+}
+
+.creating-norm p {
+    margin-top: 20px;
+    font-style: italic;
+    color: #6c757d;
+}

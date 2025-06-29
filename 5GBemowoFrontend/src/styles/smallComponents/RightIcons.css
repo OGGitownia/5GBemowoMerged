@@ -1,0 +1,26 @@
+.right-icons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index: 10;
+}
+
+
+.icon-btn-with-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #dddddd;
+    transition: color 0.3s ease;
+}
+
+.icon-btn-with-label:hover {
+    color: #ffffff;
+}

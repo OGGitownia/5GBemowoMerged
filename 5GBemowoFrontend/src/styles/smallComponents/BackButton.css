@@ -1,0 +1,32 @@
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--mint);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.back-button:hover {
+    background-color: #48A6A7;
+    transform: translateY(-2px);
+}
+
+.back-button:active {
+    background-color: #005358;
+    transform: translateY(0);
+}
+
+.back-button svg {
+    stroke: #ffffff;
+}

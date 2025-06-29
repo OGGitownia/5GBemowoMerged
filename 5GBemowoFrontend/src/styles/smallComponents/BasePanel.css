@@ -1,0 +1,54 @@
+.base-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 12px;
+    margin: 8px;
+    border-radius: 10px;
+    background-color: var(--gray);
+    border: 1px solid var(--gray);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    color: #37474F;
+}
+
+.base-panel:hover {
+    background-color: var(--darkmint);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.name {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #006A71;
+}
+
+.description {
+    font-size: 0.95em;
+    color: #607D8B;
+}
+
+.details {
+    margin-top: 8px;
+    font-size: 0.85em;
+    color: #455A64;
+}
+
+.download-link {
+    text-decoration: none;
+    color: #007acc;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.download-link:hover {
+    color: #005fa3;
+}

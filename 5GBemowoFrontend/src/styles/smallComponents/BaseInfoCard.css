@@ -1,0 +1,38 @@
+.base-card {
+    background-color: #2e2e2e;
+    color: #f5f5f5;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    margin-bottom: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.base-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5);
+}
+
+.base-card p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.base-card strong {
+    color: var(--mint);
+}
+.base-info-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.base-info-column {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 45%;
+}
+

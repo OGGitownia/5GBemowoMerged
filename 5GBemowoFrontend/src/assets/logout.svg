@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="24" height="24" viewBox="0 0 20 24"
+     stroke="currentColor" fill="currentColor"
+     class="custom-icon">
+
+<!-- ościeżnica -->
+  <line x1="3" y1="2" x2="3" y2="22"/>
+  <line x1="17" y1="2" x2="17" y2="22"/>
+  <line x1="3" y1="22" x2="17" y2="22"/>
+  <!-- otwarte drzwi -->
+  <polygon points="3,2 13,2 8,22 3,22" fill="none"/>
+  <!-- klamka -->
+  <circle cx="9" cy="12" r="1.2"/>
+</svg>

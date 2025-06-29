@@ -1,0 +1,73 @@
+.norm-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--gray);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    color: var(--white);
+}
+
+.norm-panel:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.name {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #006A71;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 10px;
+    color: var(--white) !important;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.show-bases-btn {
+    background-color: var(--mint);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.show-bases-btn:hover {
+    background-color: var(--darkmint);
+}
+
+.add-base-btn {
+    background-color: var(--mint);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.add-base-btn:hover {
+    background-color: var(--darkmint);
+}

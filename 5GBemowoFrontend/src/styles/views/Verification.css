@@ -1,0 +1,102 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 200px;
+    width: 600px;
+    background: var(--gray);
+    padding-bottom: 30px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.text {
+    color: var(--mint);
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.underline {
+    width: 61px;
+    height: 6px;
+    background: var(--mint);
+    border-radius: 9px;
+}
+
+.inputs {
+    margin-top: 55px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.field-container {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 480px;
+    height: 80px;
+    background: var(--white);
+    border-radius: 6px;
+    padding: 0 20px;
+}
+
+.field-input {
+    flex: 1;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--brightgray);
+    font-size: 19px;
+}
+
+.submit-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    height: 59px;
+    color: var(--white);
+    background: var(--mint);
+    border-radius: 50px;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+}
+
+.message {
+    margin: 20px auto 0;
+    width: 480px;
+    text-align: center;
+    font-size: 18px;
+    color: var(--brightgray);
+}
+.email-info {
+    text-align: center;
+    margin-bottom: 12px;
+    font-size: 16px;
+    color: var(--gray);
+}
+
+.user-email {
+    font-weight: bold;
+    color: var(--mint);
+}

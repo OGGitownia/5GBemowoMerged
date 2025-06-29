@@ -1,0 +1,8 @@
+flask
+sentence-transformers
+faiss-cpu
+numpy
+requests
+lxml
+langchain
+langchain_ollama

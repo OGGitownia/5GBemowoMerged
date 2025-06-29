@@ -1,0 +1,71 @@
+.series-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 12px;
+    margin: 8px;
+    border-radius: 10px;
+    background-color: var(--gray);
+    border: 1px solid var(--gray);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    color: #37474F;
+}
+
+.series-panel:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    background-color: var(--darkmint);
+}
+.header {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #37474F;
+}
+
+.description {
+    font-size: 0.9em;
+    color: #607D8B;
+}
+
+.back-title-container {
+    position: sticky;
+    top: 0;
+    background-color: #1e1e1e;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 12px 16px;
+    border-bottom: 1px solid #333;
+}
+
+
+
+.backTree-button {
+    position: absolute;
+    left: 0;
+    margin-left: 15px;
+    background-color: transparent;
+    color: var(--mint);
+    border: 1px solid var(--mint);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.backTree-button:hover {
+    background-color: var(--mint);
+    color: #111;
+}
+
+.Title-selection {
+    color: var(--mint);
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+

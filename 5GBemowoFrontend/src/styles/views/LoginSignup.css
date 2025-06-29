@@ -1,0 +1,124 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 200px;
+    width: 600px;
+    background: #f5f5f5;
+    padding-bottom: 30px;
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.text{
+    color: #0056b3;
+    font-size:48px ;
+    font-weight: 700;
+}
+
+.underline{
+    width: 61px;
+    height: 6px;
+    background: #0056b3;
+    border-radius: 9px;
+}
+
+.inputs{
+    margin-top:55px ;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.input{
+    display: flex;
+    align-items: center;
+    margin:auto ;
+    width: 480px;
+    height: 80px;
+    background: #f5f5f5;
+    border-radius: 6px;
+}
+
+.input img{
+    margin: 0 30px;
+}
+
+.input input{
+    height: 50px;
+    width: 400px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color:#495057 ;
+    font-size: 19px;
+}
+
+.forgot-password{
+    margin-left: 35%;
+    margin-top: 27px;
+    color:#495057 ;
+    font-size: 18px;
+}
+
+.forgot-password span{
+    color: #007bff;
+    cursor: pointer;
+}
+
+.submit-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.submit{
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+    width:220px ;
+    height: 59px;
+    color: #f1f3f5;
+    background: #0056b3;
+    border-radius:50px ;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+    }
+    .gray{
+        background: #f1f3f5;
+        color: #0056b3;
+    }
+
+.click-here {
+    color: #006A71;
+    font-weight: bold;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.click-here:hover {
+    text-decoration: underline;
+}
+.info-text {
+    text-align: center;
+    margin-bottom: 16px;
+    color: #cccccc;
+}
+.error-text {
+    color: red;
+    font-size: 0.85rem;
+    margin-top: 4px;
+    margin-left: auto;
+    margin-right: auto;
+}

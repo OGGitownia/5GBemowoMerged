@@ -1,0 +1,28 @@
+@import '../Shared.css';
+.all-bases-container {
+    padding: 24px;
+    background-color: var(--darkgray);
+    min-height: 100vh;
+}
+
+.all-bases-title {
+    font-size: 38px;
+    font-weight: normal;
+    color: var(--white);
+    margin-bottom: 16px;
+    font-family: 'Pacifico', cursive;
+}
+
+
+
+.base-cards-wrapper {
+    display: grid;
+    gap: 16px;
+}
+
+.loading-text {
+    color: var(--white);
+    font-size: 18px;
+    text-align: center;
+    margin-top: 32px;
+}

@@ -1,0 +1,189 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background-color: #1e1e2f;
+    color: #f1f1f1;
+    padding: 32px;
+    border-radius: 14px;
+    width: 460px;
+    max-width: 90vw;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-content h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.modal-content .highlight {
+    color: #00ffe0;
+    font-weight: 600;
+}
+
+.select-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.select-group label {
+    font-size: 14px;
+    color: #cfd8dc;
+    margin-bottom: 4px;
+}
+
+.select-group select {
+    padding: 8px;
+    background-color: #2c2c3f;
+    color: #ffffff;
+    border: 1px solid #555;
+    border-radius: 6px;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #cfd8dc;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.modal-actions button {
+    flex: 1;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-actions .start-button {
+    background-color: #00bfa5;
+    color: #ffffff;
+}
+
+.modal-actions .start-button:hover {
+    background-color: #009e88;
+}
+
+.modal-actions .cancel-button {
+    background-color: #37474f;
+    color: #ffffff;
+}
+
+.modal-actions .cancel-button:hover {
+    background-color: #263238;
+}
+
+.options-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.model-btn {
+    background-color: #2c2c3f;
+    color: #ffffff;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1 1 45%;
+    text-align: center;
+}
+
+.model-btn:hover {
+    background-color: #3a3a55;
+    border-color: #00ffe0;
+}
+
+.model-btn.selected {
+    background-color: #00ffe0;
+    color: #1e1e2f;
+    font-weight: 600;
+    border-color: #00ffe0;
+}
+
+.checkbox-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.checkbox-item {
+    background-color: #2c2c3f;
+    color: #ffffff;
+    border: 1px solid #555;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.checkbox-item input {
+    display: none;
+}
+
+.checkbox-item:hover {
+    background-color: #3d3d57;
+}
+
+.checkbox-item input:checked + span,
+.checkbox-item.selected {
+    background-color: #00ffe0;
+    color: #1e1e2f;
+    border-color: #00ffe0;
+    font-weight: 600;
+}
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

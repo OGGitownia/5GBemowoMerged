@@ -1,0 +1,5 @@
+1. Sprawdzamy npm run build oraz ./gradlew build -x test
+2. docker compose down --volumes --remove-orphans
+3. docker image prune -a
+4. docker compose build --no-cache
+5. docker compose up
