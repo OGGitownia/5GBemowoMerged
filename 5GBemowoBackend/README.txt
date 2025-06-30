@@ -11,8 +11,8 @@
 3. Create configuration files – they are not included in the project and must be created manually:
     PROJECT STRUCTURE AT THE BOTTOM IF NEEDED!
 
-   a) Create `application.properties` file in (obligatory):
-      `src/main/resources/application.properties`,
+   a) Create `application.properties` file in:
+      `src/main/resources/application.properties` (obligatory)
 
    Example content (you MUST replace values with your owns):
 
@@ -93,10 +93,10 @@
      api:
        key: YOUR_OPENAI_API_KEY
 
-4. In the terminal, run:
+4. In the terminal, in catalog 5GBemowoMerged\5GBemowoBackend run:
    ./gradlew build
 
-5. Then start the backend:
+5. Then start the backend in the same catalog as in 4th point:
    ./gradlew bootRun
 
 ## Project structure
