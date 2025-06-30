@@ -1,0 +1,67 @@
+﻿cc10826 | 2025-06-23 | Desktop | changes for docker
+8df765c | 2025-06-23 | Desktop | wersja ca┼ékiem dzia┼éaj─ůca4 (npm run build did not work)
+a50d44a | 2025-06-23 | Desktop | wersja ca┼ékiem dzia┼éaj─ůca3
+bd6fc8e | 2025-06-23 | Desktop | wersja ca┼ékiem dzia┼éaj─ůca2
+42ee76e | 2025-06-23 | Desktop | wersja ca┼ékiem dzia┼éaj─ůca
+8f93642 | 2025-06-22 | Desktop | MessageModal
+7ebf9f8 | 2025-06-18 | Desktop | poprawiony widok baz, chat├│w
+30d6bde | 2025-06-03 | Desktop | comiit co raczej nie dzia┼éa
+fe80d83 | 2025-05-27 | Mikolaj | poprawa frontendu
+998f64b | 2025-05-27 | KrystianKubicaHub | Merge pull request #4 from OGGitownia/poprawa_frontendu
+02944e4 | 2025-05-27 | Mikolaj | Merge remote-tracking branch 'origin/master' into poprawa_frontendu
+ca05797 | 2025-05-27 | Mikolaj | poprawa frontendu
+4ba83ce | 2025-05-27 | Mikolaj | validacja signup
+6094d26 | 2025-05-27 | Mikolaj | Merge remote-tracking branch 'origin/poprawa_frontendu' into poprawa_frontendu
+ae0165e | 2025-05-27 | Mikolaj | jakie┼Ť zmiany w wygladzie3
+43d631c | 2025-05-27 | Desktop | statusy
+f12810d | 2025-05-27 | Mikolaj | Merge remote-tracking branch 'origin/poprawa_frontendu' into poprawa_frontendu
+eef1cc6 | 2025-05-27 | Desktop | kommiit na uspoujnienie wersji po nie udanym merge2
+e49f433 | 2025-05-27 | Desktop | kommiit na uspoujnienie wersji po nie udanym merge
+c191f8c | 2025-05-26 | Mikolaj | Revert "jakie┼Ť zmiany w wygladzie"
+79546d8 | 2025-05-26 | Mikolaj | Revert "┼éadowaniie obraz├│w co nie dzia┼éa"
+fe1baa5 | 2025-05-26 | Mikolaj | jakie┼Ť zmiany w wygladzie
+1ad7dc9 | 2025-05-26 | Desktop | ┼éadowaniie obraz├│w co nie dzia┼éa
+fae4cd1 | 2025-05-26 | Desktop | Dzia┼éaj─ůca historia, naprawiony problem z roz┼é─ůczaj─ůcym si─Ö websocketem
+47dcbaf | 2025-05-26 | Mikolaj | jakie┼Ť zmiany w wygladzie
+04fd359 | 2025-05-26 | Desktop | poprawione import { useApp } from "../services/AppContext.tsx";
+479bce1 | 2025-05-26 | Desktop | wst─Öpna historia
+476432b | 2025-05-26 | Desktop | Merge remote-tracking branch 'origin/poprawa_frontendu' into poprawa_frontendu
+e967939 | 2025-05-26 | Desktop | pierwsza dzia┼éaj─ůca wersja
+742ac95 | 2025-05-24 | Mikolaj | odzyskiwanie hasla widok profilu ikonki w 1 miejscu emali w weryfikacji, trzeba popod┼é─ůcza─ç z backendem
+e27e200 | 2025-05-22 | Desktop | ChatView.tsx + ChatView.css
+b47f068 | 2025-05-22 | Desktop | pi─Ökny commit
+f636522 | 2025-05-22 | Desktop | wersja wygl─ůdaj─ůca niesamowicie dobrze
+d451dae | 2025-05-16 | Desktop | poprawiona nawigacja
+8138bd5 | 2025-05-16 | Desktop | Widok drzewa release -> series -> norma -> naza nie w pe┼éni funkcjonalny (nadal ale ju┼╝ bardziej)
+cddba99 | 2025-05-16 | Desktop | Widok drzewa release -> series -> norma -> naza (nie w pe┼éni funkcjonalny)
+77827ee | 2025-05-15 | Desktop | Merge remote-tracking branch 'origin/poprawa_frontendu' into poprawa_frontendu
+b90a680 | 2025-05-15 | Desktop | dzia┼éaj─ůce logowanie, tworzenie kont, wylogowywanie
+5cf3c66 | 2025-05-14 | Mikolaj | logowanie walidacja
+865c717 | 2025-05-14 | Mikolaj | commit frontendu
+f5741d0 | 2025-05-14 | Desktop | funkcje do logowania
+bb87ea2 | 2025-05-14 | Desktop | commit co dzia┼éa
+059d6fe | 2025-05-14 | Mikolaj | commmit nr2
+38bdddc | 2025-05-14 | Mikolaj | Merge remote-tracking branch 'origin/poprawa_frontendu' into poprawa_frontendu
+b95fbb0 | 2025-05-14 | Mikolaj | commit nr 2 do najtrudniejszego merge w naszym zyciu
+c3fa029 | 2025-05-14 | Desktop | commit do najtrudnejszego merge w naszym ┼╝ycu
+5da632c | 2025-05-13 | Desktop | dzi┼éaj─ůcy opel corsa
+8f0309c | 2025-05-12 | Mikolaj | failed connection with backend
+cba50c1 | 2025-05-11 | Mikolaj | LoginSignup*
+608febe | 2025-05-11 | Mikolaj | LoginSignup*
+75d2774 | 2025-05-11 | Mikolaj | LoginSignup
+bdc7d3c | 2025-05-10 | Desktop | style theme
+c544256 | 2025-05-04 | Desktop | commit powrotny
+81bd346 | 2025-05-04 | Mikolaj | dla krystiano
+697c3c0 | 2025-04-24 | Mikolaj | lekka poprawa frontendu
+60fad07 | 2025-04-24 | Desktop | wy┼Ťwietlanie zdj─Ö─ç
+9537241 | 2025-04-24 | Mikolaj | foty lokalnie
+1fd625b | 2025-03-25 | Desktop | pierwszy dzia┼éaj─ůcy commit
+3cd9399 | 2025-03-22 | Desktop | jrnopier
+196a81e | 2025-02-10 | Desktop | initial commit
+
+----------------------------
+Commity wedug autora:
+
+    35	Desktop
+    24	Mikolaj
+     1	KrystianKubicaHub
