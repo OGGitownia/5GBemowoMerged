@@ -35,7 +35,7 @@ abstract class PythonServerModel<T>(
     private fun startServer() {
         thread {
             try {
-                val processBuilder = ProcessBuilder("python",
+                val processBuilder = ProcessBuilder("python3",
                     scriptPath,
                     serverName,
                     actualPort.toString()
