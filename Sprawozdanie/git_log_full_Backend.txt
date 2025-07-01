@@ -1,0 +1,76 @@
+﻿3292aff | 2025-06-23 | Desktop | Docker changes
+ca70ad9 | 2025-06-23 | Desktop | fixed problem with json serialization2
+ef99323 | 2025-06-22 | Desktop | fixed problem with json serialization
+ed718d4 | 2025-06-22 | Desktop | Include highlighted fragments and used context chunks in messages sent to users
+6e71d89 | 2025-06-20 | Desktop | poprawiony widok baz, chat├│w
+41f3be0 | 2025-06-20 | Desktop | Usunito application.properties z Gita i dodano do .gitignore
+afb2019 | 2025-06-02 | Desktop | po prezentacji
+33ebdf8 | 2025-06-01 | bsawick1 | zmiana promptu (dodanie tabel, tym razem ju┼╝ na serio )
+e4290b5 | 2025-05-30 | bsawick1 | podpinanie googleAI i OpenAI
+aefdf60 | 2025-05-27 | bsawick1 | Merge remote-tracking branch 'origin/finalMarkDown' into finalMarkDown
+9fb5e7c | 2025-05-27 | bsawick1 | przystanek
+cd8a8e4 | 2025-05-27 | Desktop | commit do merge z bartek bo on si─Ö boi ┼╝e on ┼║le to zrobi z t─ů werus─ů
+40e2bdc | 2025-05-27 | Desktop | statusy robienia bazy
+54ab9e0 | 2025-05-26 | Desktop | DZIA┼üAJACA HISTORUA, NAPRAWIONY B┼ü─äD Z WEBSOCKET NAOKO┼üO
+235e139 | 2025-05-26 | Desktop | piierwsza dzia┼éaj─ůca wersja
+5aaf04c | 2025-05-22 | Desktop | obs┼éuga odpowiedzi dla modelu LLaMA_3_8B_Q4_0, bez kontekstu z bazy, bez funkcjonalno┼Ťci zwr├│cenie odp do frontend'u
+073860e | 2025-05-22 | Desktop | dzia┼éa robienie baz z frontendu
+23e0fa7 | 2025-05-21 | Desktop | nie dzia┼éa photoExtraction.py podczas robienia bazy
+8453a72 | 2025-05-16 | Desktop | dodanie endpoint├│w, poprawienie ich
+07f349a | 2025-05-15 | Desktop | dzia┼éaj─ůce logowanie, tworzenie kont, wylogowywanie
+cdc3c9e | 2025-05-14 | Desktop | dzia┼éaj─ůce logowanie, tworzenie kont wylogowywanie z dziwnym b┼é─Ödem, nieszkodliwym
+b969fc3 | 2025-05-14 | Desktop | commiit co dzia┼éa !
+19bc718 | 2025-05-14 | Desktop | dzi┼éaj─ůca rejestracja u┼╝ytkownik├│w
+4e37c54 | 2025-05-13 | Desktop | naprawona opel corsa
+db04dbb | 2025-05-10 | Desktop | tworzene kont urzytkownik├│w
+1eb7f18 | 2025-05-07 | Desktop | wersja do sprawdzena dzia┼éania
+7431ef3 | 2025-05-05 | Desktop | commit
+a5a1344 | 2025-05-04 | KrystianKubicaHub | Merge pull request #14 from OGGitownia/feature/norms-fetching
+9716c62 | 2025-05-04 | Desktop | norm-fetching
+51855ff | 2025-05-03 | Desktop | resync commit
+bc5cfed | 2025-05-03 | KrystianKubicaHub | Merge pull request #13 from OGGitownia/extracting-Photos-from-docx
+58d5e93 | 2025-05-03 | Desktop | resync commit
+11a597b | 2025-04-24 | Desktop | dzia┼éaj─ůcy backend do prezentacji z samsungiem
+293fd46 | 2025-04-23 | bsawick1 | ekstrakcja obraz├│w v2 chyba dzia┼éa
+f2ee3aa | 2025-04-23 | bsawick1 | ekstrakcja obraz├│w v2
+7bdcfed | 2025-04-23 | Desktop | do przestestowania
+5d0b48f | 2025-04-23 | Mikolaj | dodanie klasy PhotoExtraction
+bceecde | 2025-04-23 | bsawick1 | Merge remote-tracking branch 'origin/extracting-Photos-from-docx' into extracting-Photos-from-docx
+5fa9ab6 | 2025-04-23 | bsawick1 | ekstrakcja obraz├│w
+21cda41 | 2025-04-23 | Desktop | to be shared2
+57eed91 | 2025-04-23 | Desktop | to be shared
+a6678f8 | 2025-04-23 | Desktop | works in progress commit, to make Bartek see my code
+fe63702 | 2025-04-23 | Desktop | commiit to check if git works
+a4618c7 | 2025-04-23 | bsawick1 | test
+e1fda47 | 2025-04-22 | Sawibar | Merge pull request #1 from KrystianKubicaHub/nowa-test
+f4c515c | 2025-04-22 | bsawick1 | test pusha
+4ae6899 | 2025-04-19 | Desktop | commit kt├│ry nie mam poj─Öcia co zmienia
+0273488 | 2025-03-25 | Desktop | dzia┼éaj─ůcy commit + uporz─ůdkowany commit
+ec87544 | 2025-03-25 | Desktop | pierwszy dzia┼éaj─ůcy commit
+3c0d2c7 | 2025-03-23 | Desktop | implemented the mechanism to build a hybrid database via RestAPI
+0e5ada8 | 2025-03-23 | Desktop | ihbroiberf3
+fb95bae | 2025-03-22 | Desktop | o8iehrfb8reft
+083ce63 | 2025-03-22 | Desktop | implementation of controllers
+030058f | 2025-03-21 | Desktop | answers are the answers now
+98ad629 | 2025-03-17 | Desktop | wersja do wymiany modelu
+41063a8 | 2025-03-13 | Desktop | wersja w kt├│rej w kt├│rej wyra┼║nie nie dzia┼éa embedding wektor├│w
+0a7b426 | 2025-03-13 | Desktop | wersja z wersjonowanymi plikami bazy
+35b4948 | 2025-03-13 | Desktop | pierwsza dzia┼éaj─ůca wersja
+26d4f61 | 2025-03-10 | Desktop | lamoAsker.py - nie dzia┼éa
+e391fe4 | 2025-03-10 | Desktop | working hybridDB (partially)
+f878bef | 2025-03-10 | Desktop | efrnpioertnopijgggg
+6262372 | 2025-03-07 | Desktop | efrnpioertnopij
+ead8d91 | 2025-03-02 | Desktop | drugi commit co jeszcze bardziej nie dzia┼é─ů
+114ef76 | 2025-03-02 | Desktop | commit co nie dzia┼éa
+ccf5fce | 2025-02-27 | Desktop | a drama of light and shadow unfoldsÔÇöa dance of bodies caught in ecstatic rapture or tragic downfall. Every brushstroke is a decree, a divine breath molding figures from the clay of pigment, breathing life into beings of agony, transcendence, and raw humanity. The lightÔÇösharp, almost sacredÔÇöpierces the darkness, revealing faces contorted in ecstasy or fear, grazing tense muscles, pale hands, and crimson wounds
+52bd322 | 2025-02-10 | Desktop | initial commit
+e07becf | 2025-02-10 | Desktop | initial commit
+
+----------------------------
+Commity wedug autora:
+
+    53	Desktop
+    10	bsawick1
+     2	KrystianKubicaHub
+     1	Mikolaj
+     1	Sawibar
