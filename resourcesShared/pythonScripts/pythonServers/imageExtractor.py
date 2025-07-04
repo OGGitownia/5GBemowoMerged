@@ -9,15 +9,16 @@ import shutil
 import time
 from lxml import etree as ET
 
-
+# Ustaw kodowanie UTF-8 dla stdout
 sys.stdout.reconfigure(encoding='utf-8')
 
 app = Flask(__name__)
 
-server_name = sys.argv[1] if len(sys.argv) > 1 else "serverTemplete"
-port = int(sys.argv[2]) if len(sys.argv) > 2 else 5003
-
+# Odczyt parametrów uruchomieniowych
+server_name = sys.argv[1] if len(sys.argv) > 1 else "imageExtractor"
+port = int(sys.argv[2]) if len(sys.argv) > 2 else 5009
 SPRING_BOOT_NOTIFY = f"http://localhost:8080/{server_name}/server-ready"
+
 
 @app.route(f"/{server_name}/process", methods=["POST"])
 def process_embedding_request():
@@ -42,6 +43,7 @@ def process_embedding_request():
         import traceback
         print(traceback.format_exc(), flush=True)
         return jsonify({"error": str(e)}), 500
+
 
 def extract_images_and_replace_drawings(docx_path: str, output_docx_path2: str, output_dir: str):
     temp_dir = "_unpacked_docx"
@@ -113,10 +115,7 @@ def extract_images_and_replace_drawings(docx_path: str, output_docx_path2: str, 
 
         new_run = ET.Element(f"{{{ns['w']}}}r")
         new_text = ET.SubElement(new_run, f"{{{ns['w']}}}t")
-        if caption:
-            new_text.text = f"'{filename} : {caption}'"
-        else:
-            new_text.text = f"'{filename}'"
+        new_text.text = f"'{filename} : {caption}'" if caption else f"'{filename}'"
 
         run_parent = run.getparent()
         run_index = run_parent.index(run)
@@ -148,10 +147,7 @@ def extract_images_and_replace_drawings(docx_path: str, output_docx_path2: str, 
 
             new_run = ET.Element(f"{{{ns['w']}}}r")
             new_text = ET.SubElement(new_run, f"{{{ns['w']}}}t")
-            if caption:
-                new_text.text = f"'{new_filename} : {caption}'"
-            else:
-                new_text.text = f"'{new_filename}'"
+            new_text.text = f"'{new_filename} : {caption}'" if caption else f"'{new_filename}'"
 
             run_parent = parent_r.getparent()
             run_index = run_parent.index(parent_r)
@@ -160,9 +156,8 @@ def extract_images_and_replace_drawings(docx_path: str, output_docx_path2: str, 
 
     tree.write(document_xml_path, encoding="utf-8", xml_declaration=True, pretty_print=True)
 
-    output_docx_path = output_docx_path2
-    with zipfile.ZipFile(output_docx_path, 'w', zipfile.ZIP_DEFLATED) as docx:
-        for foldername, subfolders, filenames in os.walk(temp_dir):
+    with zipfile.ZipFile(output_docx_path2, 'w', zipfile.ZIP_DEFLATED) as docx:
+        for foldername, _, filenames in os.walk(temp_dir):
             for filename in filenames:
                 file_path = os.path.join(foldername, filename)
                 arcname = os.path.relpath(file_path, temp_dir)
@@ -171,7 +166,8 @@ def extract_images_and_replace_drawings(docx_path: str, output_docx_path2: str, 
     shutil.rmtree(temp_dir)
 
     print(f"Wszystkie zdjęcia zapisane w: {photos_dir}")
-    print(f"Zmodyfikowany dokument zapisany jako: {output_docx_path}")
+    print(f"Zmodyfikowany dokument zapisany jako: {output_docx_path2}")
+
 
 @app.route(f"/{server_name}/shutdown", methods=["POST"])
 def shutdown():
@@ -181,9 +177,11 @@ def shutdown():
     threading.Thread(target=shutdown_server).start()
     return response, 200
 
+
 @app.route("/status", methods=["GET"])
 def status():
     return jsonify({"status": "running"}), 200
+
 
 def notify_spring_boot():
     print("Notifying Spring Boot that server is ready", flush=True)
@@ -194,10 +192,12 @@ def notify_spring_boot():
     except Exception as e:
         print(f"Notification error: {e}", flush=True)
 
+
 def run_server():
     notify_spring_boot()
     print(f"Server running on port {port}", flush=True)
     app.run(host="0.0.0.0", port=port)
+
 
 if __name__ == "__main__":
     run_server()

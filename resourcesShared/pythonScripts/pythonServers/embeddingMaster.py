@@ -3,10 +3,10 @@ import json
 import torch
 import psutil
 import uvicorn
-from fastapi import FastAPI, Request
-from sentence_transformers import SentenceTransformer
 import sys
 import requests
+from fastapi import FastAPI, Request
+from sentence_transformers import SentenceTransformer
 
 print("=== SCRIPT STARTED ===")
 
@@ -26,7 +26,41 @@ print("Selected device:", device)
 MODEL_NAME = "BAAI/bge-base-en"
 print("Loading model:", MODEL_NAME)
 model = SentenceTransformer(MODEL_NAME, device=device)
-print("Model loaded.")
+print("Model loaded")
+
+def estimate_average_length(texts):
+    return sum(len(t) for t in texts) / len(texts) if texts else 0
+
+def recommend_batch_size(avg_len, device, memory_mb):
+    """
+    Assuming that:
+    - GPU memory requirements: about 1.5 KB per token when embedding BGE-M3
+    - CPU memory requirements: about 0.75 KB per token
+    """
+
+    # Assumed RAM/VRAM consumption per token (MB)
+    mem_per_token = 0.0015 if device == "cuda" else 0.00075
+
+  
+    est_batch_cost = lambda batch_size: avg_len * batch_size * mem_per_token
+
+    safety_factor = 0.85
+    mem_limit = memory_mb * safety_factor
+
+    max_batch_size = int(mem_limit / (avg_len * mem_per_token))
+
+    def floor_power_of_two(n):
+        return 2 ** (n.bit_length() - 1) if n >= 2 else 1
+
+    return floor_power_of_two(max_batch_size)
+
+def get_available_gpu_memory():
+    try:
+        handle = nvmlDeviceGetHandleByIndex(0)
+        mem = nvmlDeviceGetMemoryInfo(handle)
+        return mem.free / 1024**2
+    except:
+        return 0
 
 @app.post("/embeddingMaster/process")
 async def embed_chunks(request: Request):
@@ -47,8 +81,12 @@ async def embed_chunks(request: Request):
         print(f"Chunks to process: {len(chunks)}")
         texts = [chunk["cleanContent"] for chunk in chunks]
 
+        avg_len = estimate_average_length(texts)
+        available_memory = get_available_gpu_memory() if GPU_AVAILABLE else psutil.virtual_memory().available / 1024**2
+        batch_size = recommend_batch_size(avg_len, device, available_memory)
+        print(f"Recommended batch size: {batch_size} (avg text len: {avg_len:.1f})")
+
         embeddings = []
-        batch_size = 64
         for i in range(0, len(texts), batch_size):
             batch = texts[i:i + batch_size]
             print(f"Processing batch {i // batch_size + 1} with {len(batch)} elements")
