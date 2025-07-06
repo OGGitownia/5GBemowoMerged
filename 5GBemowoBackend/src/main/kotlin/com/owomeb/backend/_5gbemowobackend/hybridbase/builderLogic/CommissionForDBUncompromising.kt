@@ -1,5 +1,8 @@
 package com.owomeb.backend._5gbemowobackend.hybridbase.builderLogic
 
+import com.owomeb.backend._5gbemowobackend.architectureMasterpiece.EmbeddingMaster
+import com.owomeb.backend._5gbemowobackend.architectureMasterpiece.HybridDbBuilder
+import com.owomeb.backend._5gbemowobackend.architectureMasterpiece.ImageExtractorServer
 import com.owomeb.backend._5gbemowobackend.core.AppPathsConfig
 import com.owomeb.backend._5gbemowobackend.hybridbase.builder.*
 import com.owomeb.backend._5gbemowobackend.hybridbase.registry.BaseService
@@ -10,10 +13,10 @@ class CommissionForDBUncompromising(
     baseId: Long,
     private val appPathsConfig: AppPathsConfig,
     private val normManager: NormManager,
-    private val photoExtraction: PhotoExtraction,
+    private val imageExtractorServer: ImageExtractorServer,
     private val markdownManager: FinalMarkdown,
-    private val embeddingManager: NewEmbeddingManager,
-    private val hybridDbCreator: HybridDbCreator,
+    private val embeddingManager: EmbeddingMaster,
+    private val hybridDbCreator: HybridDbBuilder,
     private val sourceUrl: String
 )  : Commission(baseId) {
     private var status: CommissionStatus = CommissionStatus.INITIAL
@@ -80,14 +83,18 @@ class CommissionForDBUncompromising(
 
     private fun extract(baseService: BaseService, onFinish: () -> Unit) {
         updateStatus(baseService, BaseStatus.PROCESSING, "Extracting photos")
-        photoExtraction.extract(
-            input = appPathsConfig.getDocPath(baseId.toString()),
-            outputDocx = appPathsConfig.getExtractedDocx(baseId.toString()),
-            outputDir = appPathsConfig.getNormDirectory(baseId.toString()),
-            onFinish = onFinish
-        )
-        status = CommissionStatus.EXTRACTED
+
+        imageExtractorServer.extractImages(
+            inputDocxPath = appPathsConfig.getDocPath(baseId.toString()),
+            outputDocxPath = appPathsConfig.getExtractedDocx(baseId.toString()),
+            outputDirPath = appPathsConfig.getNormDirectory(baseId.toString())
+        ) {
+            status = CommissionStatus.EXTRACTED
+            onFinish()
+        }
     }
+
+
 
     private fun markdown(baseService: BaseService, onFinish: () -> Unit) {
         updateStatus(baseService, BaseStatus.PROCESSING, "Markdowning (wait)")
@@ -95,7 +102,6 @@ class CommissionForDBUncompromising(
             inputPath = appPathsConfig.getExtractedDocx(baseId.toString()),
             outputPath = appPathsConfig.getMarkdownPath(baseId.toString())
         )
-        TimeUnit.SECONDS.sleep(1)
         status = CommissionStatus.MARKDOWNED
         onFinish()
     }
@@ -108,27 +114,28 @@ class CommissionForDBUncompromising(
             maxChunkLen = 4000
         )
         chunker.process()
-        TimeUnit.SECONDS.sleep(1)
         status = CommissionStatus.CHUNKED
         onFinish()
     }
     private fun embed(baseService: BaseService, onFinish: () -> Unit) {
         updateStatus(baseService, BaseStatus.PROCESSING, "Embedding Embedding (wait very long)")
-        embeddingManager.generateEmbeddingsForJson(
+        embeddingManager.generateEmbeddings(
             inputFilePath = appPathsConfig.getChunkedJsonPath(baseId.toString()),
-            outputFile = appPathsConfig.getEmbeddedJsonPath(baseId.toString()),
+            outputFilePath = appPathsConfig.getEmbeddedJsonPath(baseId.toString()),
             onFinish = onFinish
         )
     }
     private fun hybridBase(baseService: BaseService, onFinish: () -> Unit) {
         status = CommissionStatus.EMBEDDED
         updateStatus(baseService, BaseStatus.PROCESSING, "Creating hybrid base")
-        hybridDbCreator.createDb(
-            inputFilePath = appPathsConfig.getEmbeddedJsonPath(baseId.toString()),
-            outputFilePath = appPathsConfig.getHybridBaseDirectory(baseId.toString()),
+
+        hybridDbCreator.buildHybridDatabase(
+            inputPath = appPathsConfig.getEmbeddedJsonPath(baseId.toString()),
+            outputPath = appPathsConfig.getHybridBaseDirectory(baseId.toString()),
             onFinish = onFinish
         )
     }
+
     private fun finalizeCommission(baseService: BaseService) {
         status = CommissionStatus.HYBRID_BASED
         updateStatus(baseService, BaseStatus.READY, "Base is READY -!!!-")

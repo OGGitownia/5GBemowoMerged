@@ -21,7 +21,7 @@ import javax.imageio.ImageIO
 @RequestMapping("/api/photos")
 class PhotoController {
 
-    private val basePath = Paths.get("src/main/resources/data")
+    private val basePath = Paths.get("../resourcesShared/data")
 
     @GetMapping("/{folder}/{filename}")
     fun getConvertedPhoto(

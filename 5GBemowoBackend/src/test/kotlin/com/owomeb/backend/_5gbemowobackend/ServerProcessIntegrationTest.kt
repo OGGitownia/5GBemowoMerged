@@ -6,7 +6,7 @@ import java.io.*
 import java.time.Duration
 import java.time.Instant
 
-class PythonServerIntegrationTest {
+class ServerProcessIntegrationTest {
 
     private val serverName = "newEmbedding"
     private val port = 5111

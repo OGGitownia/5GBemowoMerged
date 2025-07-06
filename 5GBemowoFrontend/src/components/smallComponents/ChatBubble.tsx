@@ -2,6 +2,8 @@ import React, { JSX } from "react";
 import parse, { DOMNode, Text } from "html-react-parser";
 import { Message } from "../../types/Message.tsx";
 import "../../styles/smallComponents/ChatBubble.css";
+import axios from "axios";
+const BASE_URL = `${import.meta.env.VITE_API_URL}/api/photos`;
 
 interface ChatBubbleProps {
     message: Message;
@@ -20,7 +22,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ message, onPreview }) => {
             let lastIndex = 0;
             let match;
 
-            while ((match = regex.exec(text)) !== null) {
+           while ((match = regex.exec(text)) !== null) {
                 const [fullMatch, photoId, ext] = match;
                 const start = match.index;
                 const end = regex.lastIndex;
@@ -29,7 +31,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ message, onPreview }) => {
                     parts.push(text.slice(lastIndex, start));
                 }
 
-                const imageUrl = `/api/photos/${baseId}/${fullMatch}`;
+                const imageUrl = `${BASE_URL}/${baseId}/${fullMatch}`;
                 parts.push(
                     <img
                         key={`${photoId}-${ext}-${start}`}
@@ -41,6 +43,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ message, onPreview }) => {
 
                 lastIndex = end;
             }
+
 
             if (lastIndex < text.length) {
                 parts.push(text.slice(lastIndex));

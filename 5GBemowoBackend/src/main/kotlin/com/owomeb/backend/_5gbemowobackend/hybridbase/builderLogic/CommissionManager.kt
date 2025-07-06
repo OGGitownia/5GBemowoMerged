@@ -1,5 +1,8 @@
 package com.owomeb.backend._5gbemowobackend.hybridbase.builderLogic
 
+import com.owomeb.backend._5gbemowobackend.architectureMasterpiece.EmbeddingMaster
+import com.owomeb.backend._5gbemowobackend.architectureMasterpiece.HybridDbBuilder
+import com.owomeb.backend._5gbemowobackend.architectureMasterpiece.ImageExtractorServer
 import com.owomeb.backend._5gbemowobackend.core.AppPathsConfig
 import com.owomeb.backend._5gbemowobackend.hybridbase.builder.*
 import com.owomeb.backend._5gbemowobackend.hybridbase.registry.BaseCreatingMethods
@@ -14,9 +17,9 @@ class CommissionManager(
     private val appPathsConfig: AppPathsConfig,
     private val normManager: NormManager,
     private val markdownManager: FinalMarkdown,
-    private val embeddingManager: NewEmbeddingManager,
-    private val hybridDbCreator: HybridDbCreator,
-    private val photoExtraction: PhotoExtraction
+    private val embeddingManager: EmbeddingMaster,
+    private val hybridDbCreator: HybridDbBuilder,
+    private val imageExtractorServer: ImageExtractorServer
 ) {
     private lateinit var baseService: BaseService
 
@@ -47,7 +50,7 @@ class CommissionManager(
                 markdownManager = markdownManager,
                 embeddingManager = embeddingManager,
                 hybridDbCreator = hybridDbCreator,
-                photoExtraction = photoExtraction
+                imageExtractorServer = imageExtractorServer
             )
             BaseCreatingMethods.UNCOMPROMISINGNESS -> CommissionForDBUncompromising(
                 baseId = baseId,
@@ -55,7 +58,7 @@ class CommissionManager(
                 appPathsConfig = appPathsConfig,
                 normManager = normManager,
                 markdownManager = markdownManager,
-                photoExtraction = photoExtraction,
+                imageExtractorServer = imageExtractorServer,
                 embeddingManager = embeddingManager,
                 hybridDbCreator = hybridDbCreator,
             )

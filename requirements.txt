@@ -1,3 +1,5 @@
+fastapi
+uvicorn
 flask
 sentence-transformers
 faiss-cpu
@@ -6,3 +8,6 @@ requests
 lxml
 langchain
 langchain_ollama
+psutil
+torch
+pydantic

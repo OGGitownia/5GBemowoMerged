@@ -1,48 +1,36 @@
-from flask import Flask, request, jsonify
+import os
+import sys
 import threading
 import signal
-import sys
 import requests
 import zipfile
-import os
 import shutil
 import time
 from lxml import etree as ET
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
+import uvicorn
 
-# Ustaw kodowanie UTF-8 dla stdout
-sys.stdout.reconfigure(encoding='utf-8')
+app = FastAPI()
 
-app = Flask(__name__)
-
-# Odczyt parametrów uruchomieniowych
 server_name = sys.argv[1] if len(sys.argv) > 1 else "imageExtractor"
 port = int(sys.argv[2]) if len(sys.argv) > 2 else 5009
 SPRING_BOOT_NOTIFY = f"http://localhost:8080/{server_name}/server-ready"
 
 
-@app.route(f"/{server_name}/process", methods=["POST"])
-def process_embedding_request():
-    print("process request", flush=True)
+@app.post(f"/{server_name}/process")
+async def process_embedding_request(request: Request):
     try:
-        data = request.get_json()
-        print(f"Received JSON: {data}", flush=True)
-
+        data = await request.json()
         input_path = data.get("input")
         output_docx_path = data.get("outputDocx")
         output_dir_path = data.get("outputDir")
-
-        print(f"Input path: {input_path}", flush=True)
-        print(f"Output DOCX path: {output_docx_path}", flush=True)
-        print(f"Output directory: {output_dir_path}", flush=True)
-
         extract_images_and_replace_drawings(input_path, output_docx_path, output_dir_path)
-
-        return jsonify({"message": "Processing ended"}), 200
-
+        return {"message": "Processing ended"}
     except Exception as e:
         import traceback
         print(traceback.format_exc(), flush=True)
-        return jsonify({"error": str(e)}), 500
+        return JSONResponse(content={"error": str(e)}, status_code=500)
 
 
 def extract_images_and_replace_drawings(docx_path: str, output_docx_path2: str, output_dir: str):
@@ -50,7 +38,6 @@ def extract_images_and_replace_drawings(docx_path: str, output_docx_path2: str, 
     photos_dir = os.path.join(output_dir, "photos")
     os.makedirs(photos_dir, exist_ok=True)
 
-    time.sleep(2)
     with zipfile.ZipFile(docx_path, 'r') as zip_ref:
         zip_ref.extractall(temp_dir)
 
@@ -100,7 +87,6 @@ def extract_images_and_replace_drawings(docx_path: str, output_docx_path2: str, 
                 return full_caption
         return None
 
-    # Obsługa <w:drawing>
     for drawing in root.xpath(".//w:drawing", namespaces=ns):
         run = drawing.getparent()
         if run.tag != f"{{{ns['w']}}}r":
@@ -122,7 +108,6 @@ def extract_images_and_replace_drawings(docx_path: str, output_docx_path2: str, 
         run_parent.remove(run)
         run_parent.insert(run_index, new_run)
 
-    # Obsługa <v:imagedata>
     if os.path.exists(rels_path):
         rels_tree = ET.parse(rels_path)
         rels_root = rels_tree.getroot()
@@ -164,23 +149,21 @@ def extract_images_and_replace_drawings(docx_path: str, output_docx_path2: str, 
                 docx.write(file_path, arcname)
 
     shutil.rmtree(temp_dir)
-
     print(f"Wszystkie zdjęcia zapisane w: {photos_dir}")
     print(f"Zmodyfikowany dokument zapisany jako: {output_docx_path2}")
 
 
-@app.route(f"/{server_name}/shutdown", methods=["POST"])
+@app.post(f"/{server_name}/shutdown")
 def shutdown():
     def shutdown_server():
         os.kill(os.getpid(), signal.SIGINT)
-    response = jsonify({"message": "Shutting down server"})
     threading.Thread(target=shutdown_server).start()
-    return response, 200
+    return JSONResponse(content={"message": "Shutting down server"}, status_code=200)
 
 
-@app.route("/status", methods=["GET"])
+@app.get("/status")
 def status():
-    return jsonify({"status": "running"}), 200
+    return {"status": "running"}
 
 
 def notify_spring_boot():
@@ -196,7 +179,7 @@ def notify_spring_boot():
 def run_server():
     notify_spring_boot()
     print(f"Server running on port {port}", flush=True)
-    app.run(host="0.0.0.0", port=port)
+    uvicorn.run(app, host="0.0.0.0", port=port)
 
 
 if __name__ == "__main__":

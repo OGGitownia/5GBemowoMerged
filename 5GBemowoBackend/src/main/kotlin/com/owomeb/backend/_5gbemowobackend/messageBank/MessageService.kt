@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.owomeb.backend._5gbemowobackend.api.MessageSocketHandler
+import com.owomeb.backend._5gbemowobackend.architectureMasterpiece.HybridSearchMaster
 import com.owomeb.backend._5gbemowobackend.core.AppPathsConfig
-import com.owomeb.backend._5gbemowobackend.hybridbase.retrieval.HybridSearchService
 import io.netty.channel.ChannelOption
 import io.netty.handler.timeout.ReadTimeoutHandler
 import io.netty.handler.timeout.WriteTimeoutHandler
@@ -42,7 +42,7 @@ class MessageService(
     @Value("\${openai.api.key}") private val openAiApiKey: String,
 
     private val messageRepository: MessageRepository,
-    private val hybridSearchService: HybridSearchService,
+    private val hybridSearchMaster: HybridSearchMaster,
     private val appPathsConfig: AppPathsConfig,
     private val messageSocketHandler: MessageSocketHandler,
     private val jpaContext: JpaContext
@@ -147,10 +147,10 @@ Context:
 
     private suspend fun queryLlama3(message: MessageEntity) {
         try {
-            hybridSearchService.search(
+            hybridSearchMaster.search(
                 query = message.question,
                 basePath = appPathsConfig.getHybridBaseDirectory(message.baseId),
-                onFinish = { contextForQuery, sourceIndices ->
+                onResult = { contextForQuery, sourceIndices ->
 
                     CoroutineScope(Dispatchers.IO).launch {
                         try {
@@ -228,10 +228,10 @@ Context:
         println("Processing message ${message.id} via 'queryChatGpt' (OpenAI GPT)")
 
         try {
-            hybridSearchService.search(
+            hybridSearchMaster.search(
                 query = message.question,
                 basePath = appPathsConfig.getHybridBaseDirectory(message.baseId),
-                onFinish = { contextForQuery, sourceIndices ->
+                onResult = { contextForQuery, sourceIndices ->
                     val contextChunks = getContextChunks(appPathsConfig.getEmbeddedJsonPath(message.baseId), sourceIndices)
                     CoroutineScope(Dispatchers.IO).launch {
                         try {
@@ -295,11 +295,11 @@ Context:
     private suspend fun queryGemini(message: MessageEntity) {
         println("Processing message ${message.id} via 'queryGemini' (Google AI). Model in message: ${message.modelName}")
         try {
-            hybridSearchService.search(
+            hybridSearchMaster.search(
                 query = message.question,
                 basePath = appPathsConfig.getHybridBaseDirectory(message.baseId),
-                onFinish = { contextForQuery, sourceIndices ->
-                    println("Index sourceIndices: $sourceIndices")
+                onResult = { contextForQuery, sourceIndices ->
+                    println("Index sourceIndices27: $sourceIndices")
                     val contextChunks = getContextChunks(appPathsConfig.getEmbeddedJsonPath(message.baseId), sourceIndices)
                     CoroutineScope(Dispatchers.IO).launch {
                         try {
@@ -550,8 +550,10 @@ Answer: $modelAnswer
     )
 
     data class EmbeddedJson(
+        @JsonProperty("chunks")
         val embeddedChunks: List<EmbeddedChunk>
     )
+
 
     fun getContextChunks(jsonPath: String, sourceIndices: List<Int>): List<Pair<String, Int>> {
         val mapper = jacksonObjectMapper()

@@ -2,12 +2,17 @@ import os
 import sys
 import faiss
 import json
+import signal
 import sqlite3
 import traceback
 import numpy as np
 import requests
 import psutil
 import torch
+import threading
+from fastapi.responses import JSONResponse
+
+
 
 from fastapi import FastAPI, Request
 from sentence_transformers import SentenceTransformer
@@ -75,11 +80,19 @@ def load_hybrid_database(base_path):
 def embed_query(text, dimension):
     if not text or not isinstance(text, str):
         raise ValueError("Invalid input text.")
-    embedding = model.encode(text)
+    embedding = model.encode(text, convert_to_numpy=True)
     embedding = np.array(embedding, dtype=np.float32)
     if embedding.shape[0] != dimension:
         raise ValueError(f"Expected embedding dimension {dimension}, got {embedding.shape[0]}")
     return embedding
+
+@app.post(f"/{server_name}/shutdown")
+def shutdown():
+    def shutdown_server():
+        os.kill(os.getpid(), signal.SIGINT)
+    threading.Thread(target=shutdown_server).start()
+    return JSONResponse(content={"message": "Shutting down server"}, status_code=200)
+
 
 @app.post(f"/{server_name}/process")
 async def process_query(request: Request):

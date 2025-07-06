@@ -5,6 +5,9 @@ import psutil
 import uvicorn
 import sys
 import requests
+import threading
+import signal
+from fastapi.responses import JSONResponse
 from fastapi import FastAPI, Request
 from sentence_transformers import SentenceTransformer
 
@@ -20,6 +23,8 @@ except Exception as e:
     print("GPU CHECK FAILED:", str(e))
 
 app = FastAPI()
+server_name = sys.argv[1] if len(sys.argv) > 1 else "embeddingMaster"
+port = int(sys.argv[2]) if len(sys.argv) > 2 else 8011
 device = "cuda" if GPU_AVAILABLE else "cpu"
 print("Selected device:", device)
 
@@ -119,23 +124,30 @@ def monitor_resources(batch_idx):
         except Exception as e:
             print("GPU monitoring failed:", e)
 
+@app.post(f"/{server_name}/shutdown")
+def shutdown():
+    def shutdown_server():
+        os.kill(os.getpid(), signal.SIGINT)
+    threading.Thread(target=shutdown_server).start()
+    return JSONResponse(content={"message": "Shutting down server"}, status_code=200)
+
+
+
 @app.get("/")
 def ping():
     print("Ping received")
     return {"status": "ok"}
 
 if __name__ == "__main__":
-    name = sys.argv[1] if len(sys.argv) > 1 else "embeddingMaster"
-    port = int(sys.argv[2]) if len(sys.argv) > 2 else 8011
 
     print("=== BOOT CONFIG ===")
-    print(f"Server name: {name}")
+    print(f"Server name: {server_name}")
     print(f"Port: {port}")
     print("===================")
 
     def notify_backend_ready():
         try:
-            url = f"http://localhost:8080/{name}/server-ready"
+            url = f"http://localhost:8080/{server_name}/server-ready"
             print("Notifying backend at:", url)
             r = requests.post(url, json={"port": port})
             print("Backend notified:", r.status_code, r.text)
